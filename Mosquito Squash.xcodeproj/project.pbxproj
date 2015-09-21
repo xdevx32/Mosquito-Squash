@@ -1,0 +1,446 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9C298E801BA9ACB000D05217 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C298E7F1BA9ACB000D05217 /* AppDelegate.swift */; };
+		9C298E821BA9ACB000D05217 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9C298E811BA9ACB000D05217 /* GameScene.sks */; };
+		9C298E841BA9ACB000D05217 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C298E831BA9ACB000D05217 /* GameScene.swift */; };
+		9C298E861BA9ACB000D05217 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C298E851BA9ACB000D05217 /* GameViewController.swift */; };
+		9C298E891BA9ACB000D05217 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C298E871BA9ACB000D05217 /* Main.storyboard */; };
+		9C298E8B1BA9ACB000D05217 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C298E8A1BA9ACB000D05217 /* Images.xcassets */; };
+		9C298E8E1BA9ACB000D05217 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C298E8C1BA9ACB000D05217 /* LaunchScreen.xib */; };
+		9C298E9A1BA9ACB000D05217 /* Mosquito_SquashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C298E991BA9ACB000D05217 /* Mosquito_SquashTests.swift */; };
+		9CE390551BAF26AD00E9D024 /* mosquitoFly.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9CE390541BAF26AD00E9D024 /* mosquitoFly.mp3 */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9C298E941BA9ACB000D05217 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9C298E721BA9ACB000D05217 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9C298E791BA9ACB000D05217;
+			remoteInfo = "Mosquito Squash";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9C298E7A1BA9ACB000D05217 /* Mosquito Squash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mosquito Squash.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C298E7E1BA9ACB000D05217 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9C298E7F1BA9ACB000D05217 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9C298E811BA9ACB000D05217 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		9C298E831BA9ACB000D05217 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		9C298E851BA9ACB000D05217 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		9C298E881BA9ACB000D05217 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9C298E8A1BA9ACB000D05217 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9C298E8D1BA9ACB000D05217 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		9C298E931BA9ACB000D05217 /* Mosquito SquashTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mosquito SquashTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C298E981BA9ACB000D05217 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9C298E991BA9ACB000D05217 /* Mosquito_SquashTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mosquito_SquashTests.swift; sourceTree = "<group>"; };
+		9CE390541BAF26AD00E9D024 /* mosquitoFly.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mosquitoFly.mp3; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9C298E771BA9ACB000D05217 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C298E901BA9ACB000D05217 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9C298E711BA9ACB000D05217 = {
+			isa = PBXGroup;
+			children = (
+				9C298E7C1BA9ACB000D05217 /* Mosquito Squash */,
+				9C298E961BA9ACB000D05217 /* Mosquito SquashTests */,
+				9C298E7B1BA9ACB000D05217 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9C298E7B1BA9ACB000D05217 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9C298E7A1BA9ACB000D05217 /* Mosquito Squash.app */,
+				9C298E931BA9ACB000D05217 /* Mosquito SquashTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9C298E7C1BA9ACB000D05217 /* Mosquito Squash */ = {
+			isa = PBXGroup;
+			children = (
+				9C298E7F1BA9ACB000D05217 /* AppDelegate.swift */,
+				9C298E811BA9ACB000D05217 /* GameScene.sks */,
+				9C298E831BA9ACB000D05217 /* GameScene.swift */,
+				9C298E851BA9ACB000D05217 /* GameViewController.swift */,
+				9C298E871BA9ACB000D05217 /* Main.storyboard */,
+				9C298E8A1BA9ACB000D05217 /* Images.xcassets */,
+				9C298E8C1BA9ACB000D05217 /* LaunchScreen.xib */,
+				9CE390531BAF269A00E9D024 /* sounds */,
+				9C298E7D1BA9ACB000D05217 /* Supporting Files */,
+			);
+			path = "Mosquito Squash";
+			sourceTree = "<group>";
+		};
+		9C298E7D1BA9ACB000D05217 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9C298E7E1BA9ACB000D05217 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9C298E961BA9ACB000D05217 /* Mosquito SquashTests */ = {
+			isa = PBXGroup;
+			children = (
+				9C298E991BA9ACB000D05217 /* Mosquito_SquashTests.swift */,
+				9C298E971BA9ACB000D05217 /* Supporting Files */,
+			);
+			path = "Mosquito SquashTests";
+			sourceTree = "<group>";
+		};
+		9C298E971BA9ACB000D05217 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9C298E981BA9ACB000D05217 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9CE390531BAF269A00E9D024 /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				9CE390541BAF26AD00E9D024 /* mosquitoFly.mp3 */,
+			);
+			name = sounds;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9C298E791BA9ACB000D05217 /* Mosquito Squash */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9C298E9D1BA9ACB000D05217 /* Build configuration list for PBXNativeTarget "Mosquito Squash" */;
+			buildPhases = (
+				9C298E761BA9ACB000D05217 /* Sources */,
+				9C298E771BA9ACB000D05217 /* Frameworks */,
+				9C298E781BA9ACB000D05217 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Mosquito Squash";
+			productName = "Mosquito Squash";
+			productReference = 9C298E7A1BA9ACB000D05217 /* Mosquito Squash.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9C298E921BA9ACB000D05217 /* Mosquito SquashTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9C298EA01BA9ACB000D05217 /* Build configuration list for PBXNativeTarget "Mosquito SquashTests" */;
+			buildPhases = (
+				9C298E8F1BA9ACB000D05217 /* Sources */,
+				9C298E901BA9ACB000D05217 /* Frameworks */,
+				9C298E911BA9ACB000D05217 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9C298E951BA9ACB000D05217 /* PBXTargetDependency */,
+			);
+			name = "Mosquito SquashTests";
+			productName = "Mosquito SquashTests";
+			productReference = 9C298E931BA9ACB000D05217 /* Mosquito SquashTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9C298E721BA9ACB000D05217 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = xdevx332;
+				TargetAttributes = {
+					9C298E791BA9ACB000D05217 = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+					9C298E921BA9ACB000D05217 = {
+						CreatedOnToolsVersion = 6.3.1;
+						TestTargetID = 9C298E791BA9ACB000D05217;
+					};
+				};
+			};
+			buildConfigurationList = 9C298E751BA9ACB000D05217 /* Build configuration list for PBXProject "Mosquito Squash" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9C298E711BA9ACB000D05217;
+			productRefGroup = 9C298E7B1BA9ACB000D05217 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9C298E791BA9ACB000D05217 /* Mosquito Squash */,
+				9C298E921BA9ACB000D05217 /* Mosquito SquashTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9C298E781BA9ACB000D05217 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C298E8E1BA9ACB000D05217 /* LaunchScreen.xib in Resources */,
+				9CE390551BAF26AD00E9D024 /* mosquitoFly.mp3 in Resources */,
+				9C298E8B1BA9ACB000D05217 /* Images.xcassets in Resources */,
+				9C298E821BA9ACB000D05217 /* GameScene.sks in Resources */,
+				9C298E891BA9ACB000D05217 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C298E911BA9ACB000D05217 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9C298E761BA9ACB000D05217 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C298E841BA9ACB000D05217 /* GameScene.swift in Sources */,
+				9C298E861BA9ACB000D05217 /* GameViewController.swift in Sources */,
+				9C298E801BA9ACB000D05217 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C298E8F1BA9ACB000D05217 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C298E9A1BA9ACB000D05217 /* Mosquito_SquashTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9C298E951BA9ACB000D05217 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9C298E791BA9ACB000D05217 /* Mosquito Squash */;
+			targetProxy = 9C298E941BA9ACB000D05217 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9C298E871BA9ACB000D05217 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9C298E881BA9ACB000D05217 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9C298E8C1BA9ACB000D05217 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9C298E8D1BA9ACB000D05217 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9C298E9B1BA9ACB000D05217 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		9C298E9C1BA9ACB000D05217 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9C298E9E1BA9ACB000D05217 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Mosquito Squash/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9C298E9F1BA9ACB000D05217 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Mosquito Squash/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		9C298EA11BA9ACB000D05217 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Mosquito SquashTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mosquito Squash.app/Mosquito Squash";
+			};
+			name = Debug;
+		};
+		9C298EA21BA9ACB000D05217 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Mosquito SquashTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mosquito Squash.app/Mosquito Squash";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9C298E751BA9ACB000D05217 /* Build configuration list for PBXProject "Mosquito Squash" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C298E9B1BA9ACB000D05217 /* Debug */,
+				9C298E9C1BA9ACB000D05217 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9C298E9D1BA9ACB000D05217 /* Build configuration list for PBXNativeTarget "Mosquito Squash" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C298E9E1BA9ACB000D05217 /* Debug */,
+				9C298E9F1BA9ACB000D05217 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9C298EA01BA9ACB000D05217 /* Build configuration list for PBXNativeTarget "Mosquito SquashTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C298EA11BA9ACB000D05217 /* Debug */,
+				9C298EA21BA9ACB000D05217 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9C298E721BA9ACB000D05217 /* Project object */;
+}
