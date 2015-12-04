@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="671" height="480"/>
+            <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mosquitoSquashFirstScreen" translatesAutoresizingMaskIntoConstraints="NO" id="R9u-O9-wgW">
-                    <rect key="frame" x="0.0" y="0.0" width="671" height="480"/>
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
+                    <animations/>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mosquito Squash" textAlignment="center" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kId-c2-rCX">
-                    <rect key="frame" x="235" y="22" width="391" height="65"/>
+                    <rect key="frame" x="172" y="8" width="251" height="65"/>
+                    <animations/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="391" id="23W-7S-lcH"/>
+                        <constraint firstAttribute="width" constant="251" id="23W-7S-lcH"/>
                         <constraint firstAttribute="height" constant="65" id="PBV-8t-n4x"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="56"/>
@@ -24,7 +27,8 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright (c) 2015 xdevx332. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8ie-xW-0ye">
-                    <rect key="frame" x="115" y="446" width="441" height="16"/>
+                    <rect key="frame" x="20" y="290" width="441" height="16"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="441" id="LbC-bk-bRT"/>
                     </constraints>
@@ -33,21 +37,22 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
+            <animations/>
             <color key="backgroundColor" red="0.92941176469999998" green="0.30980392159999998" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="kId-c2-rCX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="22" id="4VF-3B-wEl"/>
+                <constraint firstItem="kId-c2-rCX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="4VF-3B-wEl"/>
                 <constraint firstItem="R9u-O9-wgW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="AOi-eG-UMP"/>
-                <constraint firstAttribute="trailing" secondItem="kId-c2-rCX" secondAttribute="trailing" constant="45" id="Kv4-VT-d6Y"/>
-                <constraint firstItem="8ie-xW-0ye" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="115" id="LBH-qT-Sij"/>
+                <constraint firstAttribute="trailing" secondItem="kId-c2-rCX" secondAttribute="trailing" constant="57" id="Kv4-VT-d6Y"/>
+                <constraint firstItem="8ie-xW-0ye" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="LBH-qT-Sij"/>
                 <constraint firstItem="R9u-O9-wgW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="QEX-Ls-CAT"/>
                 <constraint firstAttribute="trailing" secondItem="R9u-O9-wgW" secondAttribute="trailing" id="hu4-mG-Ny4"/>
                 <constraint firstAttribute="bottom" secondItem="R9u-O9-wgW" secondAttribute="bottom" id="kAu-ca-jZC"/>
-                <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="18" id="yJF-Dm-HOO"/>
+                <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="14" id="yJF-Dm-HOO"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
-            <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="482.5" y="435"/>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="482" y="435"/>
         </view>
     </objects>
     <resources>

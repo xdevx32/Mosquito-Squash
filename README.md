@@ -1,2 +1,0 @@
-# Mosquito-Squash
-SpriteKit game

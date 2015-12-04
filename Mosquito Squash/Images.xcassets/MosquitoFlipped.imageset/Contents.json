@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "MosquitoFlipped.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "roomScaled.png",
       "scale" : "2x"
     },
     {
