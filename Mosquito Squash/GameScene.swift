@@ -66,7 +66,7 @@ class GameScene: SKScene {
             
             //spriteFlop.position = CGPoint(x: size.width * offsetFraction, y: size.height / 2)
            // spriteFlop.position = CGPoint(x: 100, y: 100)
-            background.addChild(spriteFlop)
+           // background.addChild(spriteFlop)
             
         }
     }
