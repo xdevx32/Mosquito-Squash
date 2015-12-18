@@ -32,19 +32,26 @@ var time = 40
 
 //
 
+
+
 let myLabel = SKLabelNode(fontNamed: "Copperplate")
 
 let timerLabel = SKLabelNode(fontNamed: "Copperplate")
 
 class GameScene: SKScene {
     
+    
+    
     var deadMosquito = SKTexture()
     
     let player = SKSpriteNode(imageNamed: "MosquitoDrawed")
-    let background = SKSpriteNode(imageNamed: "roomScaled4s")
+    let background = SKSpriteNode(imageNamed: "roomScaledB&W")
     var selectedNode = SKSpriteNode()
     override init(size: CGSize) {
         super.init(size: size)
+        
+        
+                // tap gesture end
         
         // 1
         background.name = "background"
@@ -76,17 +83,19 @@ class GameScene: SKScene {
     }
     
     
-    
-    //Function for spawning nodes
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if let touch = touches.first {
-            // ...
-            print("\(touch.locationInNode(self))")
-            
-        }
-        super.touchesBegan(touches, withEvent:event)
-    }
-    
+//    
+//    //Function for spawning nodes
+//    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+//        
+//        if let touch = touches.first {
+//            // ...
+//            print("\(touch.locationInNode(self))")
+//         
+//            
+//        }
+//        super.touchesBegan(touches, withEvent:event)
+//    }
+//    
             /* Called when a touch begins */
 //
 //            for touch in (touches as! Set<UITouch>) {
@@ -101,23 +110,21 @@ class GameScene: SKScene {
 //                print("Touched")
 //            }
 //    }
-//    
-
-    
-
+//   
+ 
     func decreaseTimer() {
         
         time--
         
         timerLabel.text = "Time: \(time)"
-        
-        if (points > 30) {
-            removeAllActions()
-            timer.invalidate()
-            let reveal = SKTransition.flipHorizontalWithDuration(0.5)
-            let gameOverScene = GameOverScene(size: self.size, won: true)
-            self.view?.presentScene(gameOverScene, transition: reveal)
-        }
+       //
+       // if (points > 30) {
+       //     removeAllActions()
+       //     timer.invalidate()
+       //     let reveal = SKTransition.flipHorizontalWithDuration(0.5)
+       //     let gameOverScene = GameOverScene(size: self.size, won: true)
+       //     self.view?.presentScene(gameOverScene, transition: reveal)
+       // }
         
     }
     override func didMoveToView(view: SKView) {
@@ -144,13 +151,17 @@ class GameScene: SKScene {
         //play Timer
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("decreaseTimer"), userInfo: nil, repeats: true)
         
+        //tap gesture
+        
+        let tap = UITapGestureRecognizer(target: self, action: "tapped:")
+        self.view!.addGestureRecognizer(tap)
         
         
-        let gestureRecognizer = UIPanGestureRecognizer(target: self, action: Selector("handlePanFrom:"))
        
-        self.view!.addGestureRecognizer(gestureRecognizer)
         //Adding the player
         addChild(player)
+        
+       // print(selectedNode.name)
         
         let actionSequence = SKAction.sequence([SKAction.runBlock(addMonster),SKAction.waitForDuration(0.9)])
         
@@ -158,75 +169,52 @@ class GameScene: SKScene {
 
         
     }
-    //Function fires when the flop is touched.
+    //Function fires when the flop is dragged
    
-       func handlePanFrom(recognizer : UIPanGestureRecognizer) {
-       
-        if recognizer.state == .Began {
-        // JUST STARTED EDITING
+    func tapped(gesture: UIGestureRecognizer){
+        var touchLocation = gesture.locationInView(gesture.view)
+        
+        touchLocation = self.convertPointFromView(touchLocation)
+        
+        self.selectNodeForTouch(touchLocation)
+        
+        
+        
+        print(selectedNode.name)
+        
+        if selectedNode.name == "predator"{
+            print("time to kill")
+          
+        
+            let pos = selectedNode.position
+            
+            var newPos = CGPoint(x: pos.x + pos.x, y: pos.y + pos.y)
+            
+            newPos = self.boundLayerPos(newPos)
+            
+            selectedNode.removeAllActions()
+            
+            let moveTo = SKAction.moveTo(newPos, duration: 0.2)
+            
+            moveTo.timingMode = .EaseOut
 
             
-            var touchLocation = recognizer.locationInView(recognizer.view)
+            let splatSound = SKAction.playSoundFileNamed("splat.mp3", waitForCompletion: false)
+            selectedNode.runAction(splatSound)
+            selectedNode.zPosition = 1
+            self.selectedNode.texture = SKTexture(imageNamed: "MosquitoDrawedDead")
+            let action =  SKAction.fadeOutWithDuration(0.5)
+            selectedNode.runAction(action)
             
-            touchLocation = self.convertPointFromView(touchLocation)
+            self.updateScoreWithValue(1)
+            print(points)
             
-            self.selectNodeForTouch(touchLocation)
-            
-        
-            } else if recognizer.state == .Changed {
-            
-                var translation = recognizer.translationInView(recognizer.view!)
-            
-                translation = CGPoint(x: translation.x, y: -translation.y)
-            
-                self.panForTranslation(translation)
-            
-                recognizer.setTranslation(CGPointZero, inView: recognizer.view)
-            
-                } else if recognizer.state == .Ended {
-            
-                if selectedNode.name != kAnimalNodeName {
-                
-                let scrollDuration = 1.0
-                
-                print("Bang!")
-                
-                let velocity = recognizer.velocityInView(recognizer.view)
-                
-                let pos = selectedNode.position
-                
-                // This just multiplies your velocity with the scroll duration.
-                let p = CGPoint(x: velocity.x * CGFloat(scrollDuration), y: velocity.y * CGFloat(scrollDuration))
-                
-                var newPos = CGPoint(x: pos.x + p.x, y: pos.y + p.y)
-                
-                newPos = self.boundLayerPos(newPos)
-                
-                selectedNode.removeAllActions()
-                
-                let moveTo = SKAction.moveTo(newPos, duration: scrollDuration)
-                
-                moveTo.timingMode = .EaseOut
-                //selectedNode.runAction(moveTo)
-                
-                if selectedNode.name != background.name{
-                    // You just hit a mosquito ! Horray.
-                let splatSound = SKAction.playSoundFileNamed("splat.mp3", waitForCompletion: false)
-                    selectedNode.runAction(splatSound)
-                    selectedNode.zPosition = 1
-                    self.selectedNode.texture = SKTexture(imageNamed: "MosquitoDrawedDead")
-                    let action =  SKAction.fadeOutWithDuration(0.5)
-                    selectedNode.runAction(action)
-                    
-                    self.updateScoreWithValue(1)
-                    print(points)
-                    
-                    
-                }
-            }
+
         }
+        
     }
 
+  
     func updateScoreWithValue (value: Int) {
         points += value
         myLabel.text = "Points: \(points)"
@@ -315,6 +303,16 @@ func addMonster() {
             self.view?.presentScene(gameOverScene, transition: reveal)
         
         }
+    
+    
+        if (points > 30) {
+            //removeAllActions()
+            timer.invalidate()
+            let reveal = SKTransition.flipHorizontalWithDuration(0.5)
+            let gameOverScene = GameOverScene(size: self.size, won: true)
+            self.view?.presentScene(gameOverScene, transition: reveal)
+        }
+
     
     
         let monster = SKSpriteNode(imageNamed: "MosquitoDrawed")
@@ -419,60 +417,30 @@ func addMonster() {
 
         // monster = SKSpriteNode(imageNamed: "MosquitoDrawedDead")
     }
+ 
     
-    func panForTranslation(translation : CGPoint) {
-        let position = selectedNode.position
-        
-        if selectedNode.name! == kAnimalNodeName {
-            selectedNode.position = CGPoint(x: position.x + translation.x, y: position.y + translation.y)
-            
-//         code for killing a mosquito
-//            print("kAnimalNodeName selected")
-//            // You just hit a mosquito ! Horray.
-//            let splatSound = SKAction.playSoundFileNamed("splat.mp3", waitForCompletion: false)
-//            selectedNode.runAction(splatSound)
-//            selectedNode.zPosition = 1
-//            self.selectedNode.texture = SKTexture(imageNamed: "MosquitoDrawedDead")
-//            let action =  SKAction.fadeOutWithDuration(0.5)
-//            selectedNode.runAction(action)
-//            
-//            self.updateScoreWithValue(1)
-//            print(points)
-//
-//            
-            
-            //
-        } else {
-            let aNewPosition = CGPoint(x: position.x + translation.x, y: position.y + translation.y)
-            background.position = self.boundLayerPos(aNewPosition)
-        }
-    }
-    
-}
-
-
 func WithAmplitude(amplitude amp: CGFloat,frequency freq:CGFloat,width:CGFloat,centered:Bool,andNumPoints numPoints:CGFloat) -> CGMutablePathRef{
-    var offsetX = 0.0;
-    var offsetY = amp;
-    
-    if (centered) {
-        offsetX = 0.0;
-        offsetY = 0;
+        var offsetX = 0.0;
+        var offsetY = amp;
+        
+        if (centered) {
+            offsetX = 0.0;
+            offsetY = 0;
+        }
+        
+        let path: CGMutablePathRef = CGPathCreateMutable()
+        CGPathMoveToPoint(path, nil, 0.0 , 0.0);
+        let xIncr: CGFloat = 2.0
+        let counter:Int = Int(numPoints)
+        for i in 1..<counter {
+            let yC = amp * sin(CGFloat(i) * π * 2.0 / 100.0)
+            CGPathAddLineToPoint(path, nil, CGFloat(i)*xIncr-2.5, yC+15.0);
+        }
+        
+        return path
     }
-    
-    let path: CGMutablePathRef = CGPathCreateMutable()
-    CGPathMoveToPoint(path, nil, 0.0 , 0.0);
-    let xIncr: CGFloat = 2.0
-    let counter:Int = Int(numPoints)
-    for i in 1..<counter {
-        let yC = amp * sin(CGFloat(i) * π * 2.0 / 100.0)
-        CGPathAddLineToPoint(path, nil, CGFloat(i)*xIncr-2.5, yC+15.0);
-    }
-    
-    return path
+
 }
-
-
 
 
 
