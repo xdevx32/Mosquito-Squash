@@ -12,6 +12,7 @@ import SpriteKit
 
 class GameOverScene: SKScene {
     
+   
     init(size: CGSize, won:Bool) {
         
         super.init(size: size)
@@ -31,15 +32,22 @@ class GameOverScene: SKScene {
         addChild(label)
         
         // 4
-        runAction(SKAction.sequence([
-            SKAction.waitForDuration(3.0),
-            SKAction.runBlock() {
-                // 5
-                let reveal = SKTransition.flipHorizontalWithDuration(0.5)
-                let scene = GameScene(size: size)
-                self.view?.presentScene(scene, transition:reveal)
-            }
-            ]))
+        //this caused a bug after game over screen
+        
+//        runAction(SKAction.sequence([
+//            SKAction.waitForDuration(3.0),
+//            SKAction.runBlock() {
+//                // 5
+//                let reveal = SKTransition.flipHorizontalWithDuration(0.5)
+//                let scene = GameScene(size: size)
+//                self.view?.presentScene(scene, transition:reveal)
+//            }
+//            ]))
+//        
+        
+        
+        //Working on Play Again
+        
         
     }
     

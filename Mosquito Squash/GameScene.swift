@@ -45,7 +45,8 @@ class GameScene: SKScene {
     var deadMosquito = SKTexture()
     
     let player = SKSpriteNode(imageNamed: "MosquitoDrawed")
-    let background = SKSpriteNode(imageNamed: "roomScaledB&W")
+    let background = SKSpriteNode(imageNamed: "MosquitoSquashKidsRoom")
+    //MosquitoSquashBackgroundBike
     var selectedNode = SKSpriteNode()
     override init(size: CGSize) {
         super.init(size: size)
@@ -82,59 +83,28 @@ class GameScene: SKScene {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-//    
-//    //Function for spawning nodes
-//    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-//        
-//        if let touch = touches.first {
-//            // ...
-//            print("\(touch.locationInNode(self))")
-//         
-//            
-//        }
-//        super.touchesBegan(touches, withEvent:event)
-//    }
-//    
-            /* Called when a touch begins */
-//
-//            for touch in (touches as! Set<UITouch>) {
-//                let location = touch.locationInNode(self)
-//    
-//                let sprite = SKSpriteNode(imageNamed:"MosquitoDrawedDead")
-//    
-//                sprite.position = location
-//                self.addChild(sprite)
-//    
-//            
-//                print("Touched")
-//            }
-//    }
-//   
- 
+  
     func decreaseTimer() {
         
         time--
         
         timerLabel.text = "Time: \(time)"
-       //
-       // if (points > 30) {
-       //     removeAllActions()
-       //     timer.invalidate()
-       //     let reveal = SKTransition.flipHorizontalWithDuration(0.5)
-       //     let gameOverScene = GameOverScene(size: self.size, won: true)
-       //     self.view?.presentScene(gameOverScene, transition: reveal)
-       // }
         
     }
+    
     override func didMoveToView(view: SKView) {
         // label code
         
         myLabel.fontColor = SKColor.blackColor()
+        
         myLabel.fontSize = 25
+        
         myLabel.position = CGPointMake(CGRectGetMidX(self.frame) - 160, CGRectGetMidY(self.frame) + 136)
+        
         myLabel.text = "Points: \(points)"
+        
         myLabel.zPosition = 1
+        
         self.addChild(myLabel)
         
         //
@@ -142,11 +112,17 @@ class GameScene: SKScene {
         //timer Label
         
         timerLabel.fontColor = SKColor.blackColor()
+        
         timerLabel.fontSize = 25
+        
         timerLabel.position = CGPointMake(CGRectGetMidX(self.frame) - 160 , CGRectGetMidY(self.frame) + 100)
+        
         timerLabel.text = "Time: \(time)"
+        
         timerLabel.zPosition = 1
+        
         self.addChild(timerLabel)
+        
         //
         //play Timer
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("decreaseTimer"), userInfo: nil, repeats: true)
@@ -164,14 +140,18 @@ class GameScene: SKScene {
        // print(selectedNode.name)
         
         let actionSequence = SKAction.sequence([SKAction.runBlock(addMonster),SKAction.waitForDuration(0.9)])
+        let secondActionSequence = SKAction.sequence([SKAction.runBlock(addMonsterTwo),SKAction.waitForDuration(2.3)])
         
         runAction(SKAction.repeatAction(actionSequence, count: 100))
+        
+        runAction(SKAction.repeatAction(secondActionSequence, count: 100))
 
         
     }
-    //Function fires when the flop is dragged
+    //Function fires when the flop is tapped
    
     func tapped(gesture: UIGestureRecognizer){
+        
         var touchLocation = gesture.locationInView(gesture.view)
         
         touchLocation = self.convertPointFromView(touchLocation)
@@ -183,6 +163,7 @@ class GameScene: SKScene {
         print(selectedNode.name)
         
         if selectedNode.name == "predator"{
+            
             print("time to kill")
           
         
@@ -200,13 +181,18 @@ class GameScene: SKScene {
 
             
             let splatSound = SKAction.playSoundFileNamed("splat.mp3", waitForCompletion: false)
+            
             selectedNode.runAction(splatSound)
+            
             selectedNode.zPosition = 1
+            
             self.selectedNode.texture = SKTexture(imageNamed: "MosquitoDrawedDead")
+            
             let action =  SKAction.fadeOutWithDuration(0.5)
             selectedNode.runAction(action)
             
             self.updateScoreWithValue(1)
+            
             print(points)
             
 
@@ -216,21 +202,17 @@ class GameScene: SKScene {
 
   
     func updateScoreWithValue (value: Int) {
+        
         points += value
+        
         myLabel.text = "Points: \(points)"
-//        if(points > 15){
-//            myLabel.fontColor = SKColor.greenColor()
-//        }
-//        if (points > 40) {
-//            removeAllActions()
-//            let reveal = SKTransition.flipHorizontalWithDuration(0.5)
-//            let gameOverScene = GameOverScene(size: self.size, won: true)
-//            self.view?.presentScene(gameOverScene, transition: reveal)
-//        }
+
     }
     
     func degToRad(degree: Double) -> CGFloat {
+        
         return CGFloat(degree / 180.0 * M_PI)
+        
     }
     
     func selectNodeForTouch(touchLocation : CGPoint) {
@@ -292,9 +274,12 @@ func addMonster() {
         
         // Create sprite
         //let monster = SKSpriteNode(imageNamed: "MosquitoFlipped")
-//        if(time < 10){
-//            timerLabel.fontColor = SKColor.redColor()
-//        }
+         if(time < 10){
+         
+            timerLabel.fontColor = SKColor.redColor()
+         
+         }
+    
          if(time < 1){
             //removeAllActions()
             timer.invalidate()
@@ -320,31 +305,53 @@ func addMonster() {
         //  monster.name = kAnimalNodeName
         monster.zPosition = 1
     
-           // self.addChild(monster)
-        // This One Osscilates !
-     //   let monsterTwo = SKSpriteNode(imageNamed: "MosquitoDrawed")
-       // monsterTwo.name = predatorNodeName
-       // monsterTwo.zPosition = 1
-            
 //            var timer = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: "doAction", userInfo: nil, repeats: true)
 //        
 //        
-        
-        // SOME OSSCILATION CODE
-        
-        //before doing osscilation that was uncommented
-        // player.position = monster.position
-       // monsterTwo.position = CGPoint(x: random(-40.0,max: -30.0), y: random(50.0,max: 200.0))
-//        // NEG
-//    
-//        monster.position = CGPoint(x: random(600.0,max: 700.0), y: random(50.0,max: 200.0))
-//    
-//        //
         monster.position = CGPoint(x: random(-10.0,max: -30.0), y: random(10.0, max:30.0))
+    
+        addChild(monster)
+    
+        // Determine speed of the monster
+        let actualDuration = 4.0
         
-      //  let oscillate = SKAction.oscillation(amplitude: amplitude, timePeriod: 1, midPoint: monsterTwo.position)
-       // let oscillateNeg = SKAction.oscillation(amplitude: -amplitude, timePeriod: 1, midPoint: monster.position)
+               let action4 = SKAction.playSoundFileNamed("mosquitoFly.mp3", waitForCompletion: true)
+    
+        
+        //this action makes them move out of the screen !
+        let actionMoveTo = SKAction.moveTo(CGPoint(x: random(500, max:800),y: random(1, max:800) ), duration: NSTimeInterval(actualDuration))
+    
+    
+        monster.runAction(actionMoveTo)
+       //monster.runAction(actionFadeOut)
+        monster.runAction(action4)
+       // monster.runAction(action5)
+    
+        //hiding a node
+          //  monster.runAction(tempActionHide)
 
+        // monster = SKSpriteNode(imageNamed: "MosquitoDrawedDead")
+    }
+ 
+    func addMonsterTwo() {
+       
+        // This One Osscilates !
+        let monsterTwo = SKSpriteNode(imageNamed: "MosquitoDrawed")
+        monsterTwo.name = predatorNodeName
+        monsterTwo.zPosition = 1
+        
+       
+        monsterTwo.position = CGPoint(x: random(-40.0,max: -30.0), y: random(50.0,max: 200.0))
+        //        // NEG
+        //
+        //        monster.position = CGPoint(x: random(600.0,max: 700.0), y: random(50.0,max: 200.0))
+        //
+        //        //
+        
+        
+        let oscillate = SKAction.oscillation(amplitude: amplitude, timePeriod: 1, midPoint: monsterTwo.position)
+        // let oscillateNeg = SKAction.oscillation(amplitude: -amplitude, timePeriod: 1, midPoint: monster.position)
+        
         if(amplitude >= 80.0){
             amplitude = amplitude - 20.0
         }
@@ -359,27 +366,27 @@ func addMonster() {
         //monster.position = CGPoint(x: 10.0, y: 100.0)
         
         // Add the monster to the scene
-        addChild(monster)
-       // addChild(monsterTwo)
+       
+        addChild(monsterTwo)
         
         
         //before doing osscilation that was uncommented
-       // player.position = monster.position
+        // player.position = monster.position
         
         // Determine speed of the monster
         let actualDuration = 4.0
         
         // Create the actions
         
-       // _ = SKAction.moveToY(200.0, duration: NSTimeInterval(actualDuration))
-       // let actionmoveTo = SKAction.moveToX(600.0, duration: NSTimeInterval(actualDuration))
-      //  let actionMoveToY = SKAction.moveToY(120.0, duration: NSTimeInterval(actualDuration))
+        // _ = SKAction.moveToY(200.0, duration: NSTimeInterval(actualDuration))
+        // let actionmoveTo = SKAction.moveToX(600.0, duration: NSTimeInterval(actualDuration))
+        //  let actionMoveToY = SKAction.moveToY(120.0, duration: NSTimeInterval(actualDuration))
         
-      //  let actionFadeOut = SKAction.fadeOutWithDuration(NSTimeInterval(actualDuration))
+        //  let actionFadeOut = SKAction.fadeOutWithDuration(NSTimeInterval(actualDuration))
         //var tempActionHide = SKAction.hide()
-      //  var action2 = SKAction.colorizeWithColor(UIColor.redColor(), colorBlendFactor: CGFloat(20.0), duration: NSTimeInterval(actualDuration))
+        //  var action2 = SKAction.colorizeWithColor(UIColor.redColor(), colorBlendFactor: CGFloat(20.0), duration: NSTimeInterval(actualDuration))
         
-        let action4 = SKAction.playSoundFileNamed("mosquitoFly.mp3", waitForCompletion: false)
+      
         //let action5 = SKAction.rotateByAngle(CGFloat(2*M_PI),duration: NSTimeInterval(actualDuration))
         
         //let actionMoveDone = SKAction.removeFromParent()
@@ -391,8 +398,8 @@ func addMonster() {
         
         //this action makes them move out of the screen !
         let actionMoveTo = SKAction.moveTo(CGPoint(x: random(500, max:800),y: random(1, max:800) ), duration: NSTimeInterval(actualDuration))
-    
-    
+        
+        
         //let actionMoveToNeg = SKAction.moveTo(CGPoint(x: random(-500, max:-800),y: random(-1, max:-800) ), duration: NSTimeInterval(actualDuration))
         //
         
@@ -400,36 +407,31 @@ func addMonster() {
         //monster.runAction(actionMove)
         //        monster.runAction(actionMove2)
         //        monster.runAction(actionMove3)
-        monster.runAction(actionMoveTo)
-    //oscc
-       // monsterTwo.runAction(actionMoveTo)
-    //end
-    //monster.runAction(actionFadeOut)
-        monster.runAction(action4)
-       // monster.runAction(action5)
-    
-    //osc
-    //  monsterTwo.runAction(SKAction.repeatAction(oscillate, count: 4))
-
+       
+        //oscc
+        monsterTwo.runAction(actionMoveTo)
+        //end
+        //monster.runAction(actionFadeOut)
+  
+        // monster.runAction(action5)
+        
+        // osc
+        monsterTwo.runAction(SKAction.repeatAction(oscillate, count: 4))
+        
         
         //hiding a node
-          //  monster.runAction(tempActionHide)
-
+        //  monster.runAction(tempActionHide)
+        
         // monster = SKSpriteNode(imageNamed: "MosquitoDrawedDead")
     }
- 
+    
+
     
 func WithAmplitude(amplitude amp: CGFloat,frequency freq:CGFloat,width:CGFloat,centered:Bool,andNumPoints numPoints:CGFloat) -> CGMutablePathRef{
-        var offsetX = 0.0;
-        var offsetY = amp;
-        
-        if (centered) {
-            offsetX = 0.0;
-            offsetY = 0;
-        }
+     
         
         let path: CGMutablePathRef = CGPathCreateMutable()
-        CGPathMoveToPoint(path, nil, 0.0 , 0.0);
+        CGPathMoveToPoint(path, nil, 0.0 , 0.0)
         let xIncr: CGFloat = 2.0
         let counter:Int = Int(numPoints)
         for i in 1..<counter {
