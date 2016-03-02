@@ -21,14 +21,25 @@ class GameOverScene: SKScene {
         backgroundColor = SKColor.whiteColor()
         
         // 2
-        let message = won ? "You Won!" : "You Lose :["
+        let message = won ? "You Won!" : "You Lose!"
         
         // 3
-        let label = SKLabelNode(fontNamed: "Chalkduster")
+        let label = SKLabelNode(fontNamed: "Copperplate")
         label.text = message
-        label.fontSize = 40
+        label.fontSize = 30
         label.fontColor = SKColor.blackColor()
         label.position = CGPoint(x: size.width/2, y: size.height/2)
+        if message == "You Won!"{
+        
+            let soundWon = SKAction.playSoundFileNamed("MosquitoWin.mp3", waitForCompletion: true)
+             self.runAction(soundWon)
+        
+        } else if message == "You Lose!"{
+            
+            let soundLost   = SKAction.playSoundFileNamed("MosquitoLose.mp3", waitForCompletion: true)
+            self.runAction(soundLost)
+            
+        }
         addChild(label)
         
         // 4

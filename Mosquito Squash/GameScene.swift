@@ -18,6 +18,10 @@ private let roomNodeName = "roomBackground"
 
 private var points = 0
 
+var pauseButton: SKSpriteNode! = nil
+
+var 😀: Int = 0
+
 var flopPosition = CGPoint(x:0 ,y:0)
 
 // OSCILLATION VARS
@@ -28,7 +32,7 @@ var amplitude: CGFloat = 20.0
 
 var timer = NSTimer()
 
-var time = 40
+var time = 30
 
 //
 
@@ -45,7 +49,7 @@ class GameScene: SKScene {
     var deadMosquito = SKTexture()
     
     let player = SKSpriteNode(imageNamed: "MosquitoDrawed")
-    let background = SKSpriteNode(imageNamed: "MosquitoSquashKidsRoom")
+    let background = SKSpriteNode(imageNamed: "roomScaled4sB&W2")
     //MosquitoSquashBackgroundBike
     var selectedNode = SKSpriteNode()
     override init(size: CGSize) {
@@ -93,6 +97,23 @@ class GameScene: SKScene {
     }
     
     override func didMoveToView(view: SKView) {
+        
+         let actionBzz = SKAction.playSoundFileNamed("mosquitoFly.mp3",  waitForCompletion: false)
+         self.runAction(actionBzz,withKey: "bzz")
+        
+        //button code
+        
+        // Create a simple red rectangle that's 100x44
+      pauseButton = SKSpriteNode(imageNamed: "pauseBtn")
+       
+        // Put it in the center of the scene
+        pauseButton.position = CGPoint(x:CGRectGetMidX(self.frame) + 190, y:CGRectGetMidY(self.frame) + 136);
+        pauseButton.zPosition = 1
+        self.addChild(pauseButton)
+        
+        //
+        
+        
         // label code
         
         myLabel.fontColor = SKColor.blackColor()
@@ -139,8 +160,10 @@ class GameScene: SKScene {
         
        // print(selectedNode.name)
         
-        let actionSequence = SKAction.sequence([SKAction.runBlock(addMonster),SKAction.waitForDuration(0.9)])
-        let secondActionSequence = SKAction.sequence([SKAction.runBlock(addMonsterTwo),SKAction.waitForDuration(2.3)])
+        let actionSequence = SKAction.sequence([SKAction.runBlock(addMonster),SKAction.waitForDuration(0.5)])
+        //was 1.5
+        let secondActionSequence = SKAction.sequence([SKAction.runBlock(addMonsterTwo),SKAction.waitForDuration(2.5)])
+        //was 5.0
         
         runAction(SKAction.repeatAction(actionSequence, count: 100))
         
@@ -148,6 +171,38 @@ class GameScene: SKScene {
 
         
     }
+    
+    override func touchesBegan(touches: Set<UITouch>?, withEvent event: UIEvent?) {
+             // Loop over all the touches in this event
+        for touch: AnyObject in touches! {
+            // Get the location of the touch in this scene
+            let location = touch.locationInNode(self)
+            // Check if the location of the touch is within the button's bounds
+            if pauseButton.containsPoint(location) {
+                //This is where the action of the button is fired
+                //😀
+                if 😀 % 2 == 0{
+                    self.scene!.view?.paused = true
+                 
+
+                }else{
+                     self.scene!.view?.paused = false
+                   
+
+                }
+               
+                😀 = 😀 + 1
+                
+                
+            }
+        }
+       
+    }
+    
+    
+    //
+    
+    
     //Function fires when the flop is tapped
    
     func tapped(gesture: UIGestureRecognizer){
@@ -156,7 +211,7 @@ class GameScene: SKScene {
         
         touchLocation = self.convertPointFromView(touchLocation)
         
-        self.selectNodeForTouch(touchLocation)
+        self.selectNodeForTouch(CGPoint(x:(touchLocation.x + 9), y: touchLocation.y))
         
         
         
@@ -164,8 +219,10 @@ class GameScene: SKScene {
         
         if selectedNode.name == "predator"{
             
+            selectedNode.name = "deadPredator"
+            
             print("time to kill")
-          
+            
         
             let pos = selectedNode.position
             
@@ -188,12 +245,43 @@ class GameScene: SKScene {
             
             self.selectedNode.texture = SKTexture(imageNamed: "MosquitoDrawedDead")
             
-            let action =  SKAction.fadeOutWithDuration(0.5)
+            
+            
+            let action =  SKAction.fadeOutWithDuration(0.2)
+            
             selectedNode.runAction(action)
             
             self.updateScoreWithValue(1)
             
             print(points)
+            
+            UIView.animateWithDuration(0.07) {
+                
+                let killLabel = SKLabelNode(fontNamed: "Copperplate")
+                
+                killLabel.fontColor = SKColor.redColor()
+                
+                killLabel.fontSize = 25
+                
+                
+               // monster.position = CGPoint(x: random(-10.0,max: -30.0), y: random(10.0, max:30.0))
+                
+                killLabel.position = CGPoint(x: self.selectedNode.position.x ,y: self.selectedNode.position.y + 80)
+
+                
+                killLabel.text = "BANG!"
+                
+                killLabel.zPosition = 1
+                
+                self.addChild(killLabel)
+                
+                  let actionFadeOut = SKAction.fadeOutWithDuration(NSTimeInterval(0.7))
+                killLabel.runAction(actionFadeOut)
+                
+
+                
+                
+            }
             
 
         }
@@ -274,33 +362,11 @@ func addMonster() {
         
         // Create sprite
         //let monster = SKSpriteNode(imageNamed: "MosquitoFlipped")
-         if(time < 10){
-         
-            timerLabel.fontColor = SKColor.redColor()
-         
-         }
-    
-         if(time < 1){
-            //removeAllActions()
-            timer.invalidate()
-            let reveal = SKTransition.flipHorizontalWithDuration(0.5)
-            let gameOverScene = GameOverScene(size: self.size, won: false)
-            self.view?.presentScene(gameOverScene, transition: reveal)
-        
-        }
     
     
-        if (points > 30) {
-            //removeAllActions()
-            timer.invalidate()
-            let reveal = SKTransition.flipHorizontalWithDuration(0.5)
-            let gameOverScene = GameOverScene(size: self.size, won: true)
-            self.view?.presentScene(gameOverScene, transition: reveal)
-        }
-
     
-    
-        let monster = SKSpriteNode(imageNamed: "MosquitoDrawed")
+       let monster = SKSpriteNode(imageNamed: "MosquitoDrawed")
+        monster.setScale(1.6)
         monster.name = predatorNodeName
         //  monster.name = kAnimalNodeName
         monster.zPosition = 1
@@ -315,22 +381,61 @@ func addMonster() {
         // Determine speed of the monster
         let actualDuration = 4.0
         
-               let action4 = SKAction.playSoundFileNamed("mosquitoFly.mp3", waitForCompletion: true)
-    
+       // let action4 = SKAction.playSoundFileNamed("mosquitoFly.mp3",  waitForCompletion: false)
+  
         
         //this action makes them move out of the screen !
         let actionMoveTo = SKAction.moveTo(CGPoint(x: random(500, max:800),y: random(1, max:800) ), duration: NSTimeInterval(actualDuration))
     
     
-        monster.runAction(actionMoveTo)
+        monster.runAction(actionMoveTo,withKey: "move")
        //monster.runAction(actionFadeOut)
-        monster.runAction(action4)
-       // monster.runAction(action5)
+       // monster.runAction(action4,withKey: "bzz")
+    
+    //monster.runAction(SKAction.sequence([action4,actionMoveTo]), withKey: "actionA")
+    
+    // monster.runAction(action5)
     
         //hiding a node
           //  monster.runAction(tempActionHide)
 
         // monster = SKSpriteNode(imageNamed: "MosquitoDrawedDead")
+    
+    if(time < 10){
+        
+        timerLabel.fontColor = SKColor.redColor()
+        
+    }
+    
+    if(time < 1){
+//that doesen't work ?
+        
+//        monster.removeActionForKey("move")
+//        monster.removeActionForKey("bzz")
+       
+            
+            timer.invalidate()
+        let reveal = SKTransition.flipHorizontalWithDuration(0.5)
+        let gameOverScene = GameOverScene(size: self.size, won: false)
+        self.view?.presentScene(gameOverScene, transition: reveal)
+        
+    }
+    
+    
+    if (points > 50) {
+        //removeAllActions()
+        //not working ?
+//        monster.removeActionForKey("move")
+//        monster.removeActionForKey("bzz")
+//        
+        timer.invalidate()
+        let reveal = SKTransition.flipHorizontalWithDuration(0.5)
+        let gameOverScene = GameOverScene(size: self.size, won: true)
+        self.view?.presentScene(gameOverScene, transition: reveal)
+    }
+
+    
+    
     }
  
     func addMonsterTwo() {
@@ -340,7 +445,7 @@ func addMonster() {
         monsterTwo.name = predatorNodeName
         monsterTwo.zPosition = 1
         
-       
+       monsterTwo.setScale(1.6)
         monsterTwo.position = CGPoint(x: random(-40.0,max: -30.0), y: random(50.0,max: 200.0))
         //        // NEG
         //
