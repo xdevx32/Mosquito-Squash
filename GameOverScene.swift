@@ -60,6 +60,7 @@ class GameOverScene: SKScene {
         addChild(label1)
         addChild(label2)
         
+     
         
         // 4
         //this caused a bug after game over screen
@@ -84,5 +85,20 @@ class GameOverScene: SKScene {
     // 6
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    override func didMoveToView(view: SKView) {
+        
+//        let reveal = SKTransition.flipHorizontalWithDuration(0.5)
+//        let game = GameScene(size: self.size)
+//        self.view?.presentScene(game, transition: reveal)
+        
+        
+//        let scene = GameScene(size: view.bounds.size)
+//        let skView = view as! SKView
+//        skView.showsFPS = true
+//        skView.showsNodeCount = true
+//        skView.ignoresSiblingOrder = true
+//        scene.scaleMode = .ResizeFill
+//        skView.presentScene(scene)
     }
 }

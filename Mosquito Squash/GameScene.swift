@@ -39,7 +39,7 @@ var monsterSpeed = 4.0
 
 let π = CGFloat(M_PI)
 
-var amplitude: CGFloat = 20.0
+var amplitude: CGFloat = 30.0
 
 var timer = NSTimer()
 
@@ -75,7 +75,7 @@ class GameScene: SKScene {
         super.init(size: size)
         
         
-                // tap gesture end
+        // tap gesture end
         
         // 1
         background.name = "background"
@@ -97,10 +97,12 @@ class GameScene: SKScene {
             //let offsetFraction = (CGFloat(i) + 1.0)/(CGFloat(imageNames.count) + 1.0)
             
             //spriteFlop.position = CGPoint(x: size.width * offsetFraction, y: size.height / 2)
-           // spriteFlop.position = CGPoint(x: 100, y: 100)
-           // background.addChild(spriteFlop)
+            // spriteFlop.position = CGPoint(x: 100, y: 100)
+            // background.addChild(spriteFlop)
             
         }
+        
+    
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -133,6 +135,12 @@ class GameScene: SKScene {
                             let reveal = SKTransition.flipHorizontalWithDuration(0.5)
                             let gameOverScene = GameOverScene(size: self.size, won: false,points: points,highscore: highscore)
                             self.view?.presentScene(gameOverScene, transition: reveal)
+                            
+                            self.scene?.removeAllChildren()
+                            self.scene?.removeAllActions()
+                            self.scene?.removeFromParent()
+                            
+                    
                         }
                         
                         
@@ -143,7 +151,16 @@ class GameScene: SKScene {
     }
     override func didMoveToView(view: SKView) {
         
-        highscore = highScoreDefaults.valueForKey("highscore") as! Int
+ 
+        
+    
+        if(highScoreDefaults.valueForKey("highscore") != nil){
+            highscore = highScoreDefaults.valueForKey("highscore") as! Int
+        }else{
+            print("nil")
+        }
+        
+        
         //highScoreDefaults.setValue(highscore, forKey: "highscore")
         //highScoreDefaults.synchronize() // don't forget this!!!!
        // print(highScoreDefaults.valueForKey("highscore"))
@@ -158,23 +175,27 @@ class GameScene: SKScene {
         
         
        //   self.view!.showsPhysics = true
-         runAction(SKAction.repeatAction(backgroundMusic, count: 40))
+       runAction(SKAction.repeatAction(backgroundMusic, count: 40))
+        runAction(SKAction.stop())
         
         
         //button code
         
         // Create a simple red rectangle that's 100x44
-        pauseButton = SKSpriteNode(imageNamed: "pauseBtn")
-        
+     
         // Put it in the center of the scene
        // pauseButton.position = CGPoint(x:CGRectGetMidX(self.frame) + 190, y:CGRectGetMidY(self.frame) + 136);
+
+        
+//        // -=-=-23=-12=3-12=3-12=3-12=3-12=3-12=3-12=3-12=3-12=3-12=3-
+//
+        
+        pauseButton = SKSpriteNode(imageNamed: "pauseBtn")
+        
         print(CGRectGetMaxX(self.frame))
         pauseButton.position = CGPoint(x:CGRectGetMaxX(self.frame) - 20 ,y:self.view!.frame.maxY - 20.0)
         pauseButton.zPosition = 1
         self.addChild(pauseButton)
-        
-//        //
-//
         
         // label code
         
@@ -217,7 +238,7 @@ class GameScene: SKScene {
         
         self.addChild(livesLabel)
         
-        //
+        //1-=23-12=3-12=3-12=3-12=3-12=3-12=-312=-312=-312=-312=3-12=3-12=
 //
 //        //timer Label
 //        
@@ -938,9 +959,9 @@ func addMonster() {
         let oscillate = SKAction.oscillation(amplitude: amplitude, timePeriod: 1, midPoint: monsterTwo.position)
         // let oscillateNeg = SKAction.oscillation(amplitude: -amplitude, timePeriod: 1, midPoint: monster.position)
         
-        if(amplitude >= 80.0){
-            amplitude = amplitude - 20.0
-        }
+//        if(amplitude >= 80.0){
+//            amplitude = amplitude - 20.0
+//        }
         
         //
         
