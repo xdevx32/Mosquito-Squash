@@ -7,6 +7,7 @@
 //
 import SpriteKit
 import CoreGraphics
+import AVFoundation
 
 // Ray Wrendlich Touch events for the flip flop
 
@@ -20,12 +21,9 @@ private var points = 0
 
 private var lives = 7
 
-//var selectedNodes = [UITouch:SKSpriteNode]()
-
-
 var highscore = 1
 
-let highScoreDefaults = NSUserDefaults.standardUserDefaults()
+let highScoreDefaults:NSUserDefaults? = NSUserDefaults.standardUserDefaults()
 
 var pauseButton: SKSpriteNode! = nil
 
@@ -46,10 +44,15 @@ var timer = NSTimer()
 var time = 30
 
 //
+
+
+var player: AVAudioPlayer = AVAudioPlayer()
+
 var masterMonsterCount: Int = 2
 
 let backgroundMusic = SKAction.playSoundFileNamed("msBackgroundMusic.wav",  waitForCompletion: true)
 
+let splatSound = SKAction.playSoundFileNamed("splat.mp3", waitForCompletion: true)
 
 let myLabel = SKLabelNode(fontNamed: "Copperplate")
 
@@ -64,45 +67,37 @@ class GameScene: SKScene {
     var deadMosquito = SKTexture()
     
     let player = SKSpriteNode(imageNamed: "MosquitoDrawed")
+    
     let background = SKSpriteNode(imageNamed: "roomScaled4sB&W2")
-    //MosquitoSquashBackgroundBike
-    
-    
+ 
     var selectedNode = SKSpriteNode()
-   
-    
+  
     override init(size: CGSize) {
+        
         super.init(size: size)
         
-        
-        // tap gesture end
-        
-        // 1
         background.name = "background"
+        
         self.background.anchorPoint = CGPointZero
+        
         background.zPosition = 0
+        
         background.size = self.frame.size
+        
         self.addChild(background)
-        
-        // 2
+ 
         let imageNames = ["MosquitoDrawedDead","flipFlop","MosquitoDrawed"]
-        
-        // 3
+     
         for i in 0..<imageNames.count {
+            
             let imageName = imageNames[i]
             
             let spriteFlop = SKSpriteNode(imageNamed: imageName)
+            
             spriteFlop.name = kAnimalNodeName
             
-            //let offsetFraction = (CGFloat(i) + 1.0)/(CGFloat(imageNames.count) + 1.0)
-            
-            //spriteFlop.position = CGPoint(x: size.width * offsetFraction, y: size.height / 2)
-            // spriteFlop.position = CGPoint(x: 100, y: 100)
-            // background.addChild(spriteFlop)
-            
         }
-        
-    
+ 
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -112,7 +107,7 @@ class GameScene: SKScene {
   
     func decreaseTimer() {
         
-        time--
+        time -= 1
         
         timerLabel.text = "Time: \(time)"
         
@@ -129,9 +124,11 @@ class GameScene: SKScene {
                     || sprite.position.y < -sprite.size.height/2.0 || sprite.position.y > self.size.height+sprite.size.height/2.0) {
                         sprite.removeFromParent()
                         sprite.physicsBody = nil
-                        lives--
+                        lives -= 1
                         livesLabel.text = "Lives: \(lives)"
                         if lives <= 0{
+                            lives = 7
+                            
                             let reveal = SKTransition.flipHorizontalWithDuration(0.5)
                             let gameOverScene = GameOverScene(size: self.size, won: false,points: points,highscore: highscore)
                             self.view?.presentScene(gameOverScene, transition: reveal)
@@ -139,11 +136,10 @@ class GameScene: SKScene {
                             self.scene?.removeAllChildren()
                             self.scene?.removeAllActions()
                             self.scene?.removeFromParent()
-                            
-                    
+                           
+                            points = 0
                         }
-                        
-                        
+        
                 }
             }
         }
@@ -154,8 +150,8 @@ class GameScene: SKScene {
  
         
     
-        if(highScoreDefaults.valueForKey("highscore") != nil){
-            highscore = highScoreDefaults.valueForKey("highscore") as! Int
+        if(highScoreDefaults!.valueForKey("highscore") != nil){
+            highscore = highScoreDefaults!.valueForKey("highscore") as! Int
         }else{
             print("nil")
         }
@@ -176,9 +172,10 @@ class GameScene: SKScene {
         
        //   self.view!.showsPhysics = true
        runAction(SKAction.repeatAction(backgroundMusic, count: 40))
+        
         runAction(SKAction.stop())
-        
-        
+       // runAction(SKAction.repeatAction(backgroundMusic, count: 40),withKey: "bgMusic")
+     
         //button code
         
         // Create a simple red rectangle that's 100x44
@@ -415,13 +412,20 @@ override func touchesBegan(touches: Set<UITouch>?, withEvent event: UIEvent?) {
 
                     
                     
-                    masterMonsterCount++
+                    masterMonsterCount += 1
                     print(masterMonsterCount)
                     if masterMonsterCount % 25 == 0 {
                         
                         addBonusLabel("CATCH THE BONUS")
                         
                         self.addSquirrel()
+                    }
+                    
+                    if masterMonsterCount % 30 == 0 {
+                        
+                        addBonusLabel("KILL THE BOSS")
+                        
+                        self.addBoss()
                     }
                     if masterMonsterCount % 30 == 0 {
                         monsterSpeed -= 0.1
@@ -446,17 +450,16 @@ override func touchesBegan(touches: Set<UITouch>?, withEvent event: UIEvent?) {
                     moveTo.timingMode = .EaseOut
                     
                     
-                    let splatSound = SKAction.playSoundFileNamed("splat.mp3", waitForCompletion: false)
-                    
+               
                     
                     //selectedNode.runAction(splatSound)
-                    self.physicsWorld.bodyAtPoint(location)?.node!.runAction(splatSound)
+                    self.runAction(splatSound)
                    // selectedNode.zPosition = 1
                     self.physicsWorld.bodyAtPoint(location)?.node!.zPosition = 1
                    // self.selectedNode.texture = SKTexture(imageNamed: "MosquitoDrawedDead")
                    
-                    touchedNodePhysicsBody.texture = SKTexture(imageNamed: "MosquitoDrawedDead")
-                    
+                   // touchedNodePhysicsBody.texture = SKTexture(imageNamed: "MosquitoDrawedDead")
+                    // One - Commented the code above to see if boss will
                     
                     
                     let action =  SKAction.fadeOutWithDuration(0.2)
@@ -727,8 +730,8 @@ override func touchesBegan(touches: Set<UITouch>?, withEvent event: UIEvent?) {
         
         if points > highscore {
             highscore = points
-            highScoreDefaults.setValue(highscore, forKey: "highscore")
-            highScoreDefaults.synchronize()
+            highScoreDefaults!.setValue(highscore, forKey: "highscore")
+            highScoreDefaults!.synchronize()
             highScoreLabel.text = "High Score: \(highscore)"
         }
 
@@ -829,6 +832,35 @@ func addSquirrel() {
 
 }
     
+func addBoss() {
+    
+    let boss = SKSpriteNode(imageNamed: "qkiqKomar")
+    
+    boss.name = "boss"
+    
+    boss.zPosition = 1
+    
+    boss.setScale(10.1)
+    
+    boss.position = CGPoint(x: random(-10.0,max: -30.0), y: random(10.0, max:30.0))
+    boss.physicsBody = SKPhysicsBody(circleOfRadius: 45.0)
+    
+    addChild(boss)
+    boss.physicsBody?.dynamic = false
+    boss.physicsBody?.affectedByGravity = false
+    boss.physicsBody?.affectedByGravity = false
+    boss.physicsBody?.allowsRotation = false
+    //let actualDuration = 4.0
+    
+    
+    let actionMoveTo = SKAction.moveTo(CGPoint(x: random(500, max:800),y: random(1, max:800) ), duration: NSTimeInterval(monsterSpeed/2))
+    
+    
+    boss.runAction(actionMoveTo,withKey: "move")
+    
+}
+    
+
     
     
 func addMonster() {
@@ -837,12 +869,18 @@ func addMonster() {
         //let monster = SKSpriteNode(imageNamed: "MosquitoFlipped")
     
     
-       let monster = SKSpriteNode(imageNamed: "MosquitoDrawed")
+       var monster = SKSpriteNode(imageNamed: "qkiqKomar")
+    /*
+    if masterMonsterCount > 20 {
+        monster = SKSpriteNode(imageNamed:"MosquitoDrawedBigRed")
+       // monster.setScale(0.7)
+    }
+ */
        // let monsterTexture = SKTexture(imageNamed: "MosquitoDrawed")
        // let monster = SKPhysicsBody(texture: monsterTexture, size: CGSize(width: 40.0, height: 40.0))
     
     
-    monster.setScale(1.2)
+        monster.setScale(0.7)
         monster.name = predatorNodeName
         //  monster.name = kAnimalNodeName
         monster.zPosition = 1
@@ -942,12 +980,16 @@ func addMonster() {
         // This One Osscilates !
       //  let size = CG
       //  let texture = SKTexture(imageNamed: "MosquitoDrawed")
-        let monsterTwo = SKSpriteNode(imageNamed: "MosquitoDrawed")
+        var monsterTwo = SKSpriteNode(imageNamed: "MosquitoDrawed")
+       // if masterMonsterCount > 20 {
+       //     monsterTwo = SKSpriteNode(imageNamed:"MosquitoDrawedBigRed")
+           // monsterTwo.setScale(0.6)
+       // } Two - commented the code above to remove the BigRedMosquitos
         monsterTwo.name = predatorNodeName
         monsterTwo.zPosition = 1
         //monsterTwo.physicsBody = SKPhysicsBody(circleOfRadius: 50.0)
 
-        monsterTwo.setScale(1.2)
+        monsterTwo.setScale(0.7)
         monsterTwo.position = CGPoint(x: -10.0, y: random(50.0,max: 300.0))
         //        // NEG
         //

@@ -10,8 +10,25 @@ import Foundation
 
 import SpriteKit
 
+var button: SKNode! = nil
+
 class GameOverScene: SKScene {
-    
+   
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        // Loop over all the touches in this event
+        for touch: AnyObject in touches {
+            // Get the location of the touch in this scene
+            let location = touch.locationInNode(self)
+            // Check if the location of the touch is within the button's bounds
+            if button.containsPoint(location) {
+                print("tapped!")
+                let reveal = SKTransition.flipHorizontalWithDuration(0.5)
+                let playScene = GameScene(size: view!.bounds.size)
+                self.view?.presentScene(playScene, transition: reveal)
+                
+            }
+        }
+    }
    
     init(size: CGSize, won:Bool, points: Int, highscore: Int) {
         
@@ -27,7 +44,9 @@ class GameOverScene: SKScene {
         let label = SKLabelNode(fontNamed: "Copperplate")
         let label1 = SKLabelNode(fontNamed: "Copperplate")
         let label2 = SKLabelNode(fontNamed: "Copperplate")
-      //  label.text = message + "\n" + "Your score is: " + "\(points)"
+        
+        button = SKSpriteNode(imageNamed:"playAgainButton")
+        //  label.text = message + "\n" + "Your score is: " + "\(points)"
         label.text = "Game over"
         label.fontSize = 30
         label.fontColor = SKColor.blackColor()
@@ -42,6 +61,11 @@ class GameOverScene: SKScene {
         label2.fontSize = 30
         label2.fontColor = SKColor.blackColor()
         label2.position = CGPoint(x: size.width/2, y: size.height/2 - 30)
+        
+        
+        button.position = CGPoint(x:CGRectGetMidX(self.frame), y:label2.position.y - 40)
+        button.setScale(0.5)
+        
         
         
         
@@ -59,6 +83,7 @@ class GameOverScene: SKScene {
         addChild(label)
         addChild(label1)
         addChild(label2)
+        addChild(button)
         
      
         

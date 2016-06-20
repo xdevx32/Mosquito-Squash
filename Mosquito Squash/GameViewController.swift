@@ -31,16 +31,36 @@ class GameViewController: UIViewController {
         return true
     }
     
+    
+    func presentScene(){
+     
+        let scene = MainMenuScene(size: view!.bounds.size)
+       
+        let skView = view as! SKView
+      
+        skView.showsFPS = false
+      
+        skView.showsNodeCount = true
+      
+        skView.ignoresSiblingOrder = true
+       
+        scene.scaleMode = .ResizeFill
+       
+        skView.presentScene(scene)
+        
+    }
+    /*
     func presentScene(){
         let scene = GameScene(size: view.bounds.size)
         let skView = view as! SKView
-        skView.showsFPS = true
+        skView.showsFPS = false
         skView.showsNodeCount = true
         skView.ignoresSiblingOrder = true
         scene.scaleMode = .ResizeFill
         skView.presentScene(scene)
         
     }
+*/
 }
 
 
