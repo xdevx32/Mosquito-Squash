@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,39 +11,51 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mosquitoSquashFirstScreen" translatesAutoresizingMaskIntoConstraints="NO" id="R9u-O9-wgW">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
+                    <animations/>
+                </imageView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mosquito Squash" textAlignment="center" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kId-c2-rCX">
+                    <rect key="frame" x="172" y="8" width="251" height="65"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="251" id="23W-7S-lcH"/>
+                        <constraint firstAttribute="height" constant="65" id="PBV-8t-n4x"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="56"/>
+                    <color key="textColor" red="0.92941176469999998" green="0.30980392159999998" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright (c) 2015 xdevx332. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8ie-xW-0ye">
                     <rect key="frame" x="20" y="290" width="441" height="16"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="441" id="LbC-bk-bRT"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mosquito Squash" textAlignment="center" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kId-c2-rCX">
-                    <rect key="frame" x="30" y="15" width="420" height="257"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="420" id="23W-7S-lcH"/>
-                        <constraint firstAttribute="height" constant="257" id="PBV-8t-n4x"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="72"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="0.96479911597685586" green="0.96625199479754131" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <animations/>
+            <color key="backgroundColor" red="0.92941176469999998" green="0.30980392159999998" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="kId-c2-rCX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="4VF-3B-wEl"/>
-                <constraint firstItem="kId-c2-rCX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="N27-E5-VHI"/>
-                <constraint firstItem="8ie-xW-0ye" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="lBH-7d-npp"/>
-                <constraint firstAttribute="trailing" secondItem="kId-c2-rCX" secondAttribute="trailing" constant="30" id="uT3-xg-cVZ"/>
+                <constraint firstItem="kId-c2-rCX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="4VF-3B-wEl"/>
+                <constraint firstItem="R9u-O9-wgW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="AOi-eG-UMP"/>
+                <constraint firstAttribute="trailing" secondItem="kId-c2-rCX" secondAttribute="trailing" constant="57" id="Kv4-VT-d6Y"/>
+                <constraint firstItem="8ie-xW-0ye" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="LBH-qT-Sij"/>
+                <constraint firstItem="R9u-O9-wgW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="QEX-Ls-CAT"/>
+                <constraint firstAttribute="trailing" secondItem="R9u-O9-wgW" secondAttribute="trailing" id="hu4-mG-Ny4"/>
+                <constraint firstAttribute="bottom" secondItem="R9u-O9-wgW" secondAttribute="bottom" id="kAu-ca-jZC"/>
                 <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="14" id="yJF-Dm-HOO"/>
-                <constraint firstItem="kId-c2-rCX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="zM8-bd-kzp"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="482" y="435"/>
         </view>
     </objects>
+    <resources>
+        <image name="mosquitoSquashFirstScreen" width="900" height="600"/>
+    </resources>
 </document>

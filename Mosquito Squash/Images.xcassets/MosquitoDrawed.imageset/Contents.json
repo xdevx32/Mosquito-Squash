@@ -2,8 +2,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "MosquitoDrawed.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "MosquitoDrawed.png"
     },
     {
       "idiom" : "universal",
