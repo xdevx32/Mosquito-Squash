@@ -74,7 +74,7 @@ class GameOverScene: SKScene {
             let soundWon = SKAction.playSoundFileNamed("MosquitoWin.mp3", waitForCompletion: true)
              self.runAction(soundWon)
         
-        } else if message == "You Lose!"{
+        } else if message == "You Lost!"{
             
             let soundLost   = SKAction.playSoundFileNamed("MosquitoLose.mp3", waitForCompletion: true)
             self.runAction(soundLost)

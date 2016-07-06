@@ -54,8 +54,8 @@ class MainMenuScene: SKScene {
         button.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame) - 60)
         button.zPosition = 2
 
-        label = SKSpriteNode(imageNamed: "playLabel")
-        label.position = CGPoint(x: button.position.x + 40, y: button.position.y + 90)
+        label = SKSpriteNode(imageNamed: "PlayLogo")
+        label.position = CGPoint(x: button.position.x , y: button.position.y)
         label.zPosition = 1
       
         self.addChild(label)

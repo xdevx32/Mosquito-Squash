@@ -23,7 +23,7 @@ var highscore = 1
 
 let highScoreDefaults:NSUserDefaults? = NSUserDefaults.standardUserDefaults()
 
-var pauseButton: SKSpriteNode! = nil
+//var pauseButton: SKSpriteNode! = nil
 
 var pauseFlag: Bool = true
 
@@ -39,7 +39,15 @@ var timer = NSTimer()
 
 var time = 30
 
-var player: AVAudioPlayer = AVAudioPlayer()
+var backgroundMusicURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("msBackgroundMusic", ofType: "wav")!)
+var backgroundMusicPlayer = AVAudioPlayer()
+
+
+var bonusMusicURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("bonusSoundMyBed", ofType: "mp3")!)
+var bonusMusicPlayer = AVAudioPlayer()
+
+var splatSoundURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("splat", ofType: "mp3")!)
+var splatSoundPlayer = AVAudioPlayer()
 
 var masterMonsterCount: Int = 2
 
@@ -59,7 +67,7 @@ class GameScene: SKScene {
     
     var deadMosquito = SKTexture()
     
-    let player = SKSpriteNode(imageNamed: "MosquitoDrawed")
+    let player = SKSpriteNode(imageNamed: "komarche1")
     
     let background = SKSpriteNode(imageNamed: "roomScaled4sB&W2")
  
@@ -90,7 +98,20 @@ class GameScene: SKScene {
             spriteFlop.name = kAnimalNodeName
             
         }
- 
+        
+        do {
+            try backgroundMusicPlayer = AVAudioPlayer(contentsOfURL: backgroundMusicURL)
+            backgroundMusicPlayer.prepareToPlay()
+            
+            //try bonusMusicPlayer = AVAudioPlayer(contentsOfURL: bonusMusicURL)
+            //bonusMusicPlayer.prepareToPlay()
+            
+            try splatSoundPlayer = AVAudioPlayer(contentsOfURL: splatSoundURL)
+            splatSoundPlayer.prepareToPlay()
+        }
+        catch {
+            print("Something bad happened. Try catching specific errors to narrow things down")
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -149,17 +170,19 @@ class GameScene: SKScene {
             print("nil")
         }
    
-       runAction(SKAction.repeatAction(backgroundMusic, count: 40))
+       //runAction(SKAction.repeatAction(backgroundMusic, count: 40))
+        backgroundMusicPlayer.play()
+        backgroundMusicPlayer.numberOfLoops = -1 // infinite playback loop
         
         runAction(SKAction.stop())
 
         
-        pauseButton = SKSpriteNode(imageNamed: "pauseBtn")
+       // pauseButton = SKSpriteNode(imageNamed: "pauseBtn")
         
         print(CGRectGetMaxX(self.frame))
-        pauseButton.position = CGPoint(x:CGRectGetMaxX(self.frame) - 20 ,y:self.view!.frame.maxY - 20.0)
-        pauseButton.zPosition = 1
-        self.addChild(pauseButton)
+      //  pauseButton.position = CGPoint(x:CGRectGetMaxX(self.frame) - 20 ,y:self.view!.frame.maxY - 20.0)
+        //pauseButton.zPosition = 1
+     //   self.addChild(pauseButton)
         
 
         
@@ -229,6 +252,8 @@ class GameScene: SKScene {
 
 override func touchesBegan(touches: Set<UITouch>?, withEvent event: UIEvent?) {
         for touchObject in touches! {
+            
+          
             
             let touch = touchObject as UITouch
            
@@ -305,13 +330,11 @@ override func touchesBegan(touches: Set<UITouch>?, withEvent event: UIEvent?) {
                         
                         self.addSquirrel()
                     }
-                    
                     if masterMonsterCount % 30 == 0 {
-                        
-                        addBonusLabel("KILL THE BOSS")
-                        
                         self.addBoss()
                     }
+                    
+                 
                     if masterMonsterCount % 30 == 0 {
                         monsterSpeed -= 0.1
                     }
@@ -331,7 +354,16 @@ override func touchesBegan(touches: Set<UITouch>?, withEvent event: UIEvent?) {
                     
                
                     
-                    self.runAction(splatSound)
+                    //self.runAction(splatSound)
+                    
+                    if (splatSoundPlayer.playing) {
+                        splatSoundPlayer.stop()
+                        splatSoundPlayer.play()
+                    }
+                    else {
+                        splatSoundPlayer.play()
+                    }
+                    
                     self.physicsWorld.bodyAtPoint(location)?.node!.zPosition = 1
                
                     let action =  SKAction.fadeOutWithDuration(0.2)
@@ -371,7 +403,7 @@ override func touchesBegan(touches: Set<UITouch>?, withEvent event: UIEvent?) {
                 
             
             
-            
+           /*
             if pauseButton.containsPoint(location) {
      
 
@@ -380,14 +412,18 @@ override func touchesBegan(touches: Set<UITouch>?, withEvent event: UIEvent?) {
                     
                     pauseFlag = false
                     self.scene!.view?.paused = true
+                  
+                    
                    
                     
                 }else {
                     pauseFlag = true
                     self.scene!.view?.paused = false
+                    
                 }
                
             }
+             */
         }
        
     
@@ -477,7 +513,7 @@ func addSquirrel() {
     
 func addBoss() {
     
-    let boss = SKSpriteNode(imageNamed: "qkiqKomar")
+    let boss = SKSpriteNode(imageNamed: "theBoss")
     
     boss.name = "boss"
     
@@ -487,7 +523,7 @@ func addBoss() {
     
     boss.position = CGPoint(x: random(-10.0,max: -30.0), y: random(10.0, max:30.0))
     boss.physicsBody = SKPhysicsBody(circleOfRadius: 45.0)
-    
+    boss.setScale(0.5)
     addChild(boss)
     boss.physicsBody?.dynamic = false
     boss.physicsBody?.affectedByGravity = false
@@ -508,7 +544,7 @@ func addMonster() {
         
   
     
-       let monster = SKSpriteNode(imageNamed: "qkiqKomar")
+       let monster = SKSpriteNode(imageNamed: "komarche2")
 
     
         monster.setScale(0.7)
@@ -520,6 +556,7 @@ func addMonster() {
         monster.physicsBody = SKPhysicsBody(circleOfRadius: 35.0)
 
     monster.position = CGPoint(x: -10.0,y:random(10.0, max:300.0))
+    monster.setScale(0.5)
         addChild(monster)
     
       monster.physicsBody?.dynamic = false
@@ -540,7 +577,7 @@ func addMonster() {
     }
  
     func addMonsterTwo() {
-        let monsterTwo = SKSpriteNode(imageNamed: "MosquitoDrawed")
+        let monsterTwo = SKSpriteNode(imageNamed: "komarche1")
  
         monsterTwo.name = predatorNodeName
         monsterTwo.zPosition = 1
