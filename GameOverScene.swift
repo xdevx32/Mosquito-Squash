@@ -7,10 +7,17 @@
 //
 
 import Foundation
-
 import SpriteKit
+import AVFoundation
+
 
 var button: SKNode! = nil
+
+var loseURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("MosquitoLose", ofType: "mp3")!)
+var losePlayer = AVAudioPlayer()
+
+var newHighscoreURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("MosquitoWin", ofType: "mp3")!)
+var newHighscorePlayer = AVAudioPlayer()
 
 class GameOverScene: SKScene {
    
@@ -33,6 +40,19 @@ class GameOverScene: SKScene {
     init(size: CGSize, won:Bool, points: Int, highscore: Int) {
         
         super.init(size: size)
+        
+        
+        do {
+            try losePlayer = AVAudioPlayer(contentsOfURL: loseURL)
+            losePlayer.prepareToPlay()
+            
+        }
+        catch {
+            print("Something bad happened. Try catching specific errors to narrow things down")
+        }
+
+        
+
         
         // 1
         backgroundColor = SKColor.whiteColor()
@@ -84,46 +104,19 @@ class GameOverScene: SKScene {
         addChild(label1)
         addChild(label2)
         addChild(button)
-        
-     
-        
-        // 4
-        //this caused a bug after game over screen
-        
-//        runAction(SKAction.sequence([
-//            SKAction.waitForDuration(3.0),
-//            SKAction.runBlock() {
-//                // 5
-//                let reveal = SKTransition.flipHorizontalWithDuration(0.5)
-//                let scene = GameScene(size: size)
-//                self.view?.presentScene(scene, transition:reveal)
-//            }
-//            ]))
-//        
-        
-        
-        //Working on Play Again
-        
-        
+
     }
     
-    // 6
+
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     override func didMoveToView(view: SKView) {
         
-//        let reveal = SKTransition.flipHorizontalWithDuration(0.5)
-//        let game = GameScene(size: self.size)
-//        self.view?.presentScene(game, transition: reveal)
+        losePlayer.play()
+        losePlayer.numberOfLoops = 0
         
-        
-//        let scene = GameScene(size: view.bounds.size)
-//        let skView = view as! SKView
-//        skView.showsFPS = true
-//        skView.showsNodeCount = true
-//        skView.ignoresSiblingOrder = true
-//        scene.scaleMode = .ResizeFill
-//        skView.presentScene(scene)
+        runAction(SKAction.stop())
+
     }
 }

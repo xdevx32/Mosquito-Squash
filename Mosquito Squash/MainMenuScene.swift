@@ -15,32 +15,43 @@
 
 import Foundation
 import SpriteKit
+import AVFoundation
 
 class MainMenuScene: SKScene {
     
+    var mainMenuSoundURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("bzzz", ofType: "wav")!)
+    var mainMenuSoundPlayer = AVAudioPlayer()
     
     var button: SKNode! = nil
     var label: SKNode! = nil
+    var logo: SKNode! = nil
     
     override func didMoveToView(view: SKView) {
+        mainMenuSoundPlayer.play()
+        mainMenuSoundPlayer.numberOfLoops = -1 // infinite playback loop
+    
+        runAction(SKAction.stop())
+
         
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-            // Loop over all the touches in this event
-            for touch: AnyObject in touches {
-                // Get the location of the touch in this scene
-                let location = touch.locationInNode(self)
-                // Check if the location of the touch is within the button's bounds
-                if button.containsPoint(location) {
-                    print("tapped!")
-                    let reveal = SKTransition.flipHorizontalWithDuration(0.5)
-                    let playScene = GameScene(size: view!.bounds.size)
-                    self.view?.presentScene(playScene, transition: reveal)
+        // Loop over all the touches in this event
+        for touch: AnyObject in touches {
+            // Get the location of the touch in this scene
+            let location = touch.locationInNode(self)
+            // Check if the location of the touch is within the button's bounds
+            if button.containsPoint(location) {
+                print("tapped!")
+                let reveal = SKTransition.flipHorizontalWithDuration(0.5)
+                let playScene = GameScene(size: view!.bounds.size)
+                self.view?.presentScene(playScene, transition: reveal)
                 
-                }
             }
+        }
     }
+
+
     
     override init(size: CGSize) {
         
@@ -57,7 +68,13 @@ class MainMenuScene: SKScene {
         label = SKSpriteNode(imageNamed: "PlayLogo")
         label.position = CGPoint(x: button.position.x , y: button.position.y)
         label.zPosition = 1
-      
+        
+        logo = SKSpriteNode(imageNamed: "Logo")
+        logo.position = CGPoint(x: label.position.x , y: label.position.y + 42)
+        logo.setScale(0.7)
+        logo.zPosition = 1
+       
+        self.addChild(logo)
         self.addChild(label)
         self.addChild(button)
      
@@ -89,6 +106,17 @@ class MainMenuScene: SKScene {
         addChild(label2)
         
         */
+        
+        
+        do {
+            try mainMenuSoundPlayer = AVAudioPlayer(contentsOfURL: mainMenuSoundURL)
+            mainMenuSoundPlayer.prepareToPlay()
+         
+        }
+        catch {
+            print("Something bad happened. Try catching specific errors to narrow things down")
+        }
+
     }
 
     required init(coder aDecoder: NSCoder) {

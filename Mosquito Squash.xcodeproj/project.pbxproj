@@ -15,6 +15,8 @@
 		5B4BE21A1C9A37AA003474A4 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5B4BE2191C9A37AA003474A4 /* GameScene.sks */; };
 		5B8C2BF11CE8A36700DA2518 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8C2BF01CE8A36700DA2518 /* MainMenuScene.swift */; };
 		5B9CBDDD1C94CA26009149A7 /* msBackgroundMusic.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5B9CBDDC1C94CA26009149A7 /* msBackgroundMusic.wav */; };
+		5BE4F1641D312431003A8FB7 /* bzzz.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5BE4F1631D312431003A8FB7 /* bzzz.wav */; };
+		5BE4F1661D313DCE003A8FB7 /* bossSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5BE4F1651D313DCE003A8FB7 /* bossSound.mp3 */; };
 		9C298E801BA9ACB000D05217 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C298E7F1BA9ACB000D05217 /* AppDelegate.swift */; };
 		9C298E841BA9ACB000D05217 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C298E831BA9ACB000D05217 /* GameScene.swift */; };
 		9C298E861BA9ACB000D05217 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C298E851BA9ACB000D05217 /* GameViewController.swift */; };
@@ -43,6 +45,8 @@
 		5B4BE2191C9A37AA003474A4 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		5B8C2BF01CE8A36700DA2518 /* MainMenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
 		5B9CBDDC1C94CA26009149A7 /* msBackgroundMusic.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = msBackgroundMusic.wav; sourceTree = "<group>"; };
+		5BE4F1631D312431003A8FB7 /* bzzz.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bzzz.wav; sourceTree = "<group>"; };
+		5BE4F1651D313DCE003A8FB7 /* bossSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bossSound.mp3; sourceTree = "<group>"; };
 		9C298E7A1BA9ACB000D05217 /* Mosquito Squash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mosquito Squash.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C298E7E1BA9ACB000D05217 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C298E7F1BA9ACB000D05217 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +143,8 @@
 		9CE390531BAF269A00E9D024 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				5BE4F1631D312431003A8FB7 /* bzzz.wav */,
+				5BE4F1651D313DCE003A8FB7 /* bossSound.mp3 */,
 				570EDA0F1C29898100773A1B /* MosquitoLose.mp3 */,
 				570EDA101C29898100773A1B /* MosquitoWin.mp3 */,
 				5B9CBDDC1C94CA26009149A7 /* msBackgroundMusic.wav */,
@@ -231,6 +237,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BE4F1661D313DCE003A8FB7 /* bossSound.mp3 in Resources */,
+				5BE4F1641D312431003A8FB7 /* bzzz.wav in Resources */,
 				9C298E8E1BA9ACB000D05217 /* LaunchScreen.xib in Resources */,
 				571FD0241C0CC19F004D0A24 /* splat.mp3 in Resources */,
 				9C298E8B1BA9ACB000D05217 /* Images.xcassets in Resources */,

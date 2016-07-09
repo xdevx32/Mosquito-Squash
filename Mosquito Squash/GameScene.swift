@@ -98,7 +98,7 @@ class GameScene: SKScene {
             spriteFlop.name = kAnimalNodeName
             
         }
-        
+     
         do {
             try backgroundMusicPlayer = AVAudioPlayer(contentsOfURL: backgroundMusicURL)
             backgroundMusicPlayer.prepareToPlay()
@@ -281,7 +281,33 @@ override func touchesBegan(touches: Set<UITouch>?, withEvent event: UIEvent?) {
                     }
                 }
                 
-       
+                
+                if self.physicsWorld.bodyAtPoint(location)?.node!.name == "boss"{
+                    selectedNode = physicsWorld.bodyAtPoint(location)?.node!  as! SKSpriteNode
+                    let pos = selectedNode.position
+                    
+                    var newPos = CGPoint(x: pos.x, y: pos.y)
+                    
+                    newPos = self.boundLayerPos(newPos)
+                    
+                    selectedNode.removeAllActions()
+                    
+                    let moveTo = SKAction.moveTo(newPos, duration: 0.2)
+                    
+                    moveTo.timingMode = .EaseOut
+                    
+                    selectedNode.zPosition = 1
+                    
+                    let action = SKAction.fadeOutWithDuration(0.4)
+                    
+                    selectedNode.runAction(action)
+                    
+                    self.updateScoreWithValue(20)
+                    
+                    selectedNode.physicsBody = nil
+                    
+                }
+                
                 
                 
                 if self.physicsWorld.bodyAtPoint(location)?.node!.name == "squirrel"{
@@ -309,7 +335,7 @@ override func touchesBegan(touches: Set<UITouch>?, withEvent event: UIEvent?) {
                     selectedNode.physicsBody = nil
                     
                 }
-          
+                
                 if self.physicsWorld.bodyAtPoint(location)?.node!.name == "predator"{
                     
                      let touchedNodePhysicsBody = physicsWorld.bodyAtPoint(location)?.node!  as! SKSpriteNode
@@ -330,7 +356,9 @@ override func touchesBegan(touches: Set<UITouch>?, withEvent event: UIEvent?) {
                         
                         self.addSquirrel()
                     }
-                    if masterMonsterCount % 30 == 0 {
+                    if masterMonsterCount % 40 == 0 {
+                        addBossLabel("KILL THE BOSS")
+                        
                         self.addBoss()
                     }
                     
@@ -452,6 +480,29 @@ override func touchesBegan(touches: Set<UITouch>?, withEvent event: UIEvent?) {
          bonusLabel.runAction(SKAction.repeatAction(action, count: 3))
 
     }
+    func addBossLabel(text: String){
+        
+        let bonusLabel = SKLabelNode(fontNamed: "Copperplate")
+        
+        bonusLabel.fontColor = SKColor.redColor()
+        
+        bonusLabel.fontSize = 30
+        
+        bonusLabel.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) + 50)
+        
+        bonusLabel.text = text
+        
+        bonusLabel.zPosition = 1
+        
+        self.addChild(bonusLabel)
+        
+        let action = SKAction.sequence([SKAction.fadeInWithDuration(0.3),SKAction.fadeOutWithDuration(0.3)])
+        
+        
+        bonusLabel.runAction(SKAction.repeatAction(action, count: 3))
+        
+    }
+
 
   
     func updateScoreWithValue (value: Int) {
@@ -515,6 +566,10 @@ func addBoss() {
     
     let boss = SKSpriteNode(imageNamed: "theBoss")
     
+    let bossSound = SKAction.playSoundFileNamed("bossSound.mp3", waitForCompletion: false)
+    
+    self.runAction(bossSound)
+    
     boss.name = "boss"
     
     boss.zPosition = 1
@@ -522,15 +577,15 @@ func addBoss() {
     boss.setScale(10.1)
     
     boss.position = CGPoint(x: random(-10.0,max: -30.0), y: random(10.0, max:30.0))
-    boss.physicsBody = SKPhysicsBody(circleOfRadius: 45.0)
-    boss.setScale(0.5)
+    boss.physicsBody = SKPhysicsBody(circleOfRadius: 55.0)
+    boss.setScale(0.789765)
     addChild(boss)
     boss.physicsBody?.dynamic = false
     boss.physicsBody?.affectedByGravity = false
     boss.physicsBody?.affectedByGravity = false
     boss.physicsBody?.allowsRotation = false
   
-    let actionMoveTo = SKAction.moveTo(CGPoint(x: random(500, max:800),y: random(1, max:800) ), duration: NSTimeInterval(monsterSpeed/2))
+    let actionMoveTo = SKAction.moveTo(CGPoint(x: random(500, max:800),y: random(1, max:800) ), duration: NSTimeInterval(monsterSpeed))
     
     
     boss.runAction(actionMoveTo,withKey: "move")
@@ -544,10 +599,10 @@ func addMonster() {
         
   
     
-       let monster = SKSpriteNode(imageNamed: "komarche2")
+       let monster = SKSpriteNode(imageNamed: "komarche1")
 
     
-        monster.setScale(0.7)
+        //monster.setScale(0.7)
         monster.name = predatorNodeName
 
         monster.zPosition = 1
