@@ -19,6 +19,8 @@ private var points = 0
 
 private var lives = 7
 
+var bossCnt = 0
+
 var highscore = 1
 
 let highScoreDefaults:NSUserDefaults? = NSUserDefaults.standardUserDefaults()
@@ -86,7 +88,7 @@ class GameScene: SKScene {
         background.size = self.frame.size
         
         self.addChild(background)
- 
+        /*
         let imageNames = ["MosquitoDrawedDead","flipFlop","MosquitoDrawed"]
      
         for i in 0..<imageNames.count {
@@ -98,7 +100,7 @@ class GameScene: SKScene {
             spriteFlop.name = kAnimalNodeName
             
         }
-     
+        */
         do {
             try backgroundMusicPlayer = AVAudioPlayer(contentsOfURL: backgroundMusicURL)
             backgroundMusicPlayer.prepareToPlay()
@@ -297,14 +299,22 @@ override func touchesBegan(touches: Set<UITouch>?, withEvent event: UIEvent?) {
                     moveTo.timingMode = .EaseOut
                     
                     selectedNode.zPosition = 1
+                   
+                    bossCnt == bossCnt + 1
                     
-                    let action = SKAction.fadeOutWithDuration(0.4)
+                        let action = SKAction.fadeOutWithDuration(1.0)
                     
-                    selectedNode.runAction(action)
+                    let VECTOR = CGVector(dx: pos.x, dy: pos.y)
                     
-                    self.updateScoreWithValue(20)
+                        let another = SKAction.applyForce(VECTOR, atPoint: newPos, duration: 0.5)
                     
-                    selectedNode.physicsBody = nil
+                        selectedNode.runAction(another)
+                        selectedNode.runAction(action)
+                        
+                        self.updateScoreWithValue(20)
+                        
+                        selectedNode.physicsBody = nil
+            
                     
                 }
                 
@@ -357,7 +367,7 @@ override func touchesBegan(touches: Set<UITouch>?, withEvent event: UIEvent?) {
                         self.addSquirrel()
                     }
                     if masterMonsterCount % 40 == 0 {
-                        addBossLabel("KILL THE BOSS")
+                        addBossLabel("Oh noo...")
                         
                         self.addBoss()
                     }
@@ -564,7 +574,7 @@ func addSquirrel() {
     
 func addBoss() {
     
-    let boss = SKSpriteNode(imageNamed: "theBoss")
+    let boss = SKSpriteNode(imageNamed: "2000px-Mosquito_female")
     
     let bossSound = SKAction.playSoundFileNamed("bossSound.mp3", waitForCompletion: false)
     
@@ -585,10 +595,10 @@ func addBoss() {
     boss.physicsBody?.affectedByGravity = false
     boss.physicsBody?.allowsRotation = false
   
-    let actionMoveTo = SKAction.moveTo(CGPoint(x: random(500, max:800),y: random(1, max:800) ), duration: NSTimeInterval(monsterSpeed))
+    let actionMoveTo = SKAction.moveTo(CGPoint(x: 1000,y: 500), duration: NSTimeInterval(monsterSpeed*7))
     
-    
-    boss.runAction(actionMoveTo,withKey: "move")
+    // asdddddd
+    boss.runAction(actionMoveTo)
     
 }
     
@@ -632,12 +642,12 @@ func addMonster() {
     }
  
     func addMonsterTwo() {
-        let monsterTwo = SKSpriteNode(imageNamed: "komarche1")
+        let monsterTwo = SKSpriteNode(imageNamed: "komarche2")
  
         monsterTwo.name = predatorNodeName
         monsterTwo.zPosition = 1
     
-        monsterTwo.setScale(0.7)
+        //monsterTwo.setScale(0.7)
         monsterTwo.position = CGPoint(x: -10.0, y: random(50.0,max: 300.0))
              let oscillate = SKAction.oscillation(amplitude: amplitude, timePeriod: 1, midPoint: monsterTwo.position)
    

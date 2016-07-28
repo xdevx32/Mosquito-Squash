@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9C298E791BA9ACB000D05217"
                BuildableName = "Mosquito Squash.app"
-               BlueprintName = "Mosquito Squash"
-               ReferencedContainer = "container:Mosquito Squash.xcodeproj">
+               BlueprintName = "&#x41c;&#x43e;&#x441;&#x43a;&#x438;&#x442;&#x443;&#x421;&#x43a;&#x443;&#x43e;&#x448;"
+               ReferencedContainer = "container:&#x41c;&#x43e;&#x441;&#x43a;&#x438;&#x442;&#x443;&#x421;&#x43a;&#x443;&#x43e;&#x448;.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9C298E921BA9ACB000D05217"
-               BuildableName = "Mosquito SquashTests.xctest"
+               BuildableName = "Mosquito Squash.xctest"
                BlueprintName = "Mosquito SquashTests"
-               ReferencedContainer = "container:Mosquito Squash.xcodeproj">
+               ReferencedContainer = "container:&#x41c;&#x43e;&#x441;&#x43a;&#x438;&#x442;&#x443;&#x421;&#x43a;&#x443;&#x43e;&#x448;.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -44,8 +44,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9C298E791BA9ACB000D05217"
             BuildableName = "Mosquito Squash.app"
-            BlueprintName = "Mosquito Squash"
-            ReferencedContainer = "container:Mosquito Squash.xcodeproj">
+            BlueprintName = "&#x41c;&#x43e;&#x441;&#x43a;&#x438;&#x442;&#x443;&#x421;&#x43a;&#x443;&#x43e;&#x448;"
+            ReferencedContainer = "container:&#x41c;&#x43e;&#x441;&#x43a;&#x438;&#x442;&#x443;&#x421;&#x43a;&#x443;&#x43e;&#x448;.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -67,8 +67,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9C298E791BA9ACB000D05217"
             BuildableName = "Mosquito Squash.app"
-            BlueprintName = "Mosquito Squash"
-            ReferencedContainer = "container:Mosquito Squash.xcodeproj">
+            BlueprintName = "&#x41c;&#x43e;&#x441;&#x43a;&#x438;&#x442;&#x443;&#x421;&#x43a;&#x443;&#x43e;&#x448;"
+            ReferencedContainer = "container:&#x41c;&#x43e;&#x441;&#x43a;&#x438;&#x442;&#x443;&#x421;&#x43a;&#x443;&#x43e;&#x448;.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -86,8 +86,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9C298E791BA9ACB000D05217"
             BuildableName = "Mosquito Squash.app"
-            BlueprintName = "Mosquito Squash"
-            ReferencedContainer = "container:Mosquito Squash.xcodeproj">
+            BlueprintName = "&#x41c;&#x43e;&#x441;&#x43a;&#x438;&#x442;&#x443;&#x421;&#x43a;&#x443;&#x43e;&#x448;"
+            ReferencedContainer = "container:&#x41c;&#x43e;&#x441;&#x43a;&#x438;&#x442;&#x443;&#x421;&#x43a;&#x443;&#x43e;&#x448;.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

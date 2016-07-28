@@ -41,7 +41,7 @@ class GameViewController: UIViewController {
       
         skView.showsFPS = false
       
-        skView.showsNodeCount = true
+        skView.showsNodeCount = false
       
         skView.ignoresSiblingOrder = true
        

@@ -57,8 +57,8 @@ class MainMenuScene: SKScene {
         
         super.init(size: size)
         
-        backgroundColor = SKColor.whiteColor()
-        
+        backgroundColor = SKColor.init(red: 99/255, green: 230/255, blue: 190/255, alpha: 1)
+        //backgroundColor = SKColor.darkGrayColor()
         // Create a simple red rectangle that's 100x44
         //  button = SKSpriteNode(color: SKColor.redColor(), size: CGSize(width: 100, height: 44))
         button = SKSpriteNode(imageNamed:"playAgainButton")
@@ -70,7 +70,7 @@ class MainMenuScene: SKScene {
         label.zPosition = 1
         
         logo = SKSpriteNode(imageNamed: "Logo")
-        logo.position = CGPoint(x: label.position.x , y: label.position.y + 42)
+        logo.position = CGPoint(x: label.position.x , y: label.position.y + 56)
         logo.setScale(0.7)
         logo.zPosition = 1
        
